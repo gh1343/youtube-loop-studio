@@ -1,7 +1,7 @@
 'use client';
 
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {KeyboardShortcuts} from '@/components/KeyboardShortcuts';
+// import {KeyboardShortcuts} from '@/components/KeyboardShortcuts';
 import {LoopControls} from '@/components/LoopControls';
 import {SpeedControl} from '@/components/SpeedControl';
 import {TimeDisplay} from '@/components/TimeDisplay';
@@ -620,13 +620,13 @@ export default function HomePage() {
             disableLabel={text.loop.disable}
           />
 
-          <KeyboardShortcuts
+          {/* <KeyboardShortcuts
             title={text.shortcuts.title}
             setStartLabel={text.shortcuts.setStart}
             setEndLabel={text.shortcuts.setEnd}
             toggleLoopLabel={text.shortcuts.toggleLoop}
             playPauseLabel={text.shortcuts.playPause}
-          />
+          /> */}
         </section>
 
         {/* <section className="panel">
