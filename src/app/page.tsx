@@ -196,6 +196,16 @@ export default function HomePage() {
   );
   const text = UI_TEXT[locale];
 
+  const applyLoopStart = useCallback(
+    (nextStart: number | null) => {
+      setLoopStart(nextStart);
+      if (nextStart !== null && loopEnd !== null && nextStart > loopEnd) {
+        setLoopEnd(null);
+      }
+    },
+    [loopEnd],
+  );
+
   useEffect(() => {
     if (typeof window === 'undefined') {
       return;
@@ -261,8 +271,8 @@ export default function HomePage() {
   const setLoopStartFromCurrent = useCallback(() => {
     const liveTime = getCurrentTimeSafely(playerRef.current);
     const nextStart = liveTime ?? currentTime;
-    setLoopStart(Math.floor(nextStart));
-  }, [currentTime]);
+    applyLoopStart(Math.floor(nextStart));
+  }, [applyLoopStart, currentTime]);
 
   const setLoopEndFromCurrent = useCallback(() => {
     const liveTime = getCurrentTimeSafely(playerRef.current);
@@ -593,7 +603,7 @@ export default function HomePage() {
               }
               const parsed = parseTimeInputToSeconds(value);
               if (parsed !== null) {
-                setLoopStart(parsed);
+                applyLoopStart(parsed);
               }
             }}
             onEndValueChange={value => {
